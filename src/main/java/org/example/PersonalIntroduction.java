@@ -1,3 +1,5 @@
+package org.example;
+
 public class PersonalIntroduction {
 
     public static void introduceMe(){
