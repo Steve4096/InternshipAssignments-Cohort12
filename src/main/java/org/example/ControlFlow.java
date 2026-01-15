@@ -57,7 +57,7 @@ public class ControlFlow {
         double a= scanner.nextDouble();
         System.out.println("Enter second number;");
         double b= scanner.nextDouble();
-        System.out.println("Enter operator;");
+        System.out.println("Enter operator(+,-,*,/,%;");
         char operator=scanner.next().charAt(0);
         if((operator=='/' || operator=='%') && b==0){
             System.out.println("Cannot perform division/modulus if the second number is 0");
