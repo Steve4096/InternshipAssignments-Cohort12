@@ -26,12 +26,9 @@ public class Calculator {
         System.out.println("Enter your grade:");
         int grade= scanner.nextInt();
         boolean isPass;
-        if(grade>75){
-            isPass=true;
-        }
-        else {
-            isPass=false;
-        }
+        //if(grade>75) isPass=true;
+        //else isPass=false;
+        isPass=grade>75;
         System.out.println("Student details");
         System.out.println("Name: "+name);
         System.out.println("Age: "+age);

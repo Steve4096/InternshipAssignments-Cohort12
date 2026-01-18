@@ -2,7 +2,6 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        //ControlFlow.calculator();
-        ControlFlow.trafficLightSystem();
+        LoopsControlFlow.primeNumberChecker();
     }
 }
