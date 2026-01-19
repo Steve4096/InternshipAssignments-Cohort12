@@ -47,4 +47,13 @@ public class Calculator {
         double BMI=mass/actualHeight;
         System.out.println("Your BMI is: "+BMI);
     }
+
+    public static void dailySavings(){
+        int sum=0;
+        for (int i=1;i<=365;i++){
+            sum+=i;
+            System.out.println("Amount to save at day "+i+" is "+i);
+            System.out.println("Total saved is: "+sum);
+        }
+    }
 }

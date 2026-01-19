@@ -2,6 +2,6 @@ package org.example;
 
 public class Main {
     public static void main(String[] args) {
-        LoopsControlFlow.primeNumberChecker();
+        Assessment1_SteveMuturi.pyramidPatternPrinting();
     }
 }
