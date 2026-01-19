@@ -11,8 +11,8 @@ public class Assessment1_SteveMuturi {
         int a=15,b=4,c=7;
         int sum=a+b+c;
         int product=a*b;
-        double combinedOperation=(a+b)*c;
-        double remainder=a%b;
+        int combinedOperation=(a+b)*c;
+        int remainder=a%b;
         System.out.println("Sum is: "+sum);
         System.out.println("Product is: "+product);
         System.out.println("Expression result is: "+combinedOperation);
@@ -35,6 +35,7 @@ public class Assessment1_SteveMuturi {
             else if (score>=60) grade="D";
             else grade="F";
             System.out.println("Student grade is: "+grade);
+            break;
         }
     }
 
