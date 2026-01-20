@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        //Assessment1_SteveMuturi.calculator();
         Scanner scanner=new Scanner(System.in);
         boolean running=true;
         while (running){
@@ -15,7 +16,8 @@ public class Main {
                  case 3 -> Assessment1_SteveMuturi.numberSequence();
                 // case 1 -> Assessment1_SteveMuturi.
                  case 5 -> Assessment1_SteveMuturi.rightAngledTrianglePatternPrinting();
-                 case 6 ->{
+                 case 6 -> Assessment1_SteveMuturi.calculator();
+                 case 7 ->{
                      System.out.println("Exiting");
                      running=false;
                  }
@@ -33,6 +35,7 @@ public class Main {
         System.out.println("3.Number sequence");
         System.out.println("4.Input validation");
         System.out.println("5.Pattern printing(Right-angled triangle");
-        System.out.println("6.Exit");
+        System.out.println("6.Simple Calculator");
+        System.out.println("7.Exit");
     }
 }

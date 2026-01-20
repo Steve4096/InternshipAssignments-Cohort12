@@ -93,5 +93,69 @@ public class Assessment1_SteveMuturi {
         }
     }
 
+    public static void calculator(){
+        double result=0,a,b=0;
+        boolean running=true;
+        do{
+            calculatorMenu();
+            System.out.println("Enter your choice(1-8)");
+            int choice=scanner.nextInt();
+            if(choice==7){
+                System.out.println("Enter the number:");
+                a=scanner.nextInt();
+            } else if (choice==8) {
+                System.out.println("Thank you for using simple calculator");
+                System.out.println("Exiting the system.");
+                return;
+            }else if(choice>8) {
+                System.out.println("Invalid choice.Please select from the menu below.");
+                continue;
+            }else {
+                    System.out.println("Enter the first number:");
+                    a= scanner.nextDouble();
+                    System.out.println("Enter the second number:");
+                    b= scanner.nextDouble();
+                }
+            if((b==0) && (choice==4 || choice==5)){
+                System.out.println("Cannot perform division/modulus if the second number is 0.");
+                System.out.println("Please enter another number or choose another operation.");
+                continue;
+            }
+            switch (choice){
+                case 1 -> result=a+b;
+                case 2 -> result=a-b;
+                case 3 -> result=a*b;
+                case 4 -> result=a/b;
+                case 5 -> result=a%b;
+                case 6 -> result=Math.pow(a,b);
+                case 7 -> result=Math.sqrt(a);
+                default -> System.out.println("Invalid choice.Please select one from the menu below.");
+            }
+            System.out.println("Result is:"+result);
+            System.out.println("Would you like to continue(y/n)");
+            char c=scanner.next().charAt(0);
+            if(c=='y')running=true;
+            else {
+                System.out.println("Thank you for using simple calculator");
+                System.out.println("Exiting the system.");
+                running=false;
+                scanner.close();
+            }
+        }while (running);
+        scanner.close();
+    }
+
+    private static void calculatorMenu(){
+        System.out.println("==Simple Calculator==");
+        System.out.println("1.Addition");
+        System.out.println("2.Subtraction");
+        System.out.println("3.Multiplication");
+        System.out.println("4.Division");
+        System.out.println("5.Modulus");
+        System.out.println("6.Power");
+        System.out.println("7.Square root");
+        System.out.println("8.Exit");
+    }
+
 
 }
