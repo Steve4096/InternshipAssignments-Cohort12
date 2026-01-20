@@ -55,18 +55,27 @@ public class Assessment1_SteveMuturi {
     }
 
     //Quiz 4
-//    public static void inputValidation() {
-//        //boolean isPositive=false;
-//        int factorial;
-//        do{
-//            System.out.println("Enter a positive number:");
-//            int x = scanner.nextInt();
-//           if(x<0){
-//               System.out.println("Invalid input. Enter a positive number.");
-//               continue;
-//           }
-//        }while (true);
-//    }
+    public static void inputValidation() {
+        int a,factorial=0;
+        while (true){
+            System.out.println("Enter a positive number.");
+            if(!scanner.hasNextInt()){
+                System.out.println("Please enter a number");
+                scanner.next();
+                continue;
+            }
+            a= scanner.nextInt();
+            if (a<0){
+                System.out.println("Invalid input.Please enter a positive integer");
+            }else {
+                for(int i=1;i<=a;i++){
+                    factorial*=i;
+                }
+                System.out.println(factorial);
+                break;
+            }
+        }
+    }
 
     //Quiz 5
     public static void rightAngledTrianglePatternPrinting() {
@@ -81,24 +90,18 @@ public class Assessment1_SteveMuturi {
         }
     }
 
-    public static void pyramidPatternPrinting(){
-        for (int i=1;i<=5;i++){
-            for (int j=1;j<=5;j++){
-                System.out.print(" ");
-            }
-            for (int k=1;k<=i;k++){
-                System.out.print("*"+" ");
-            }
-            System.out.println();
-        }
-    }
-
+    //Assignment 1
     public static void calculator(){
         double result=0,a,b=0;
         boolean running=true;
         do{
             calculatorMenu();
             System.out.println("Enter your choice(1-8)");
+            if(!scanner.hasNextInt()){
+                System.out.println("Invalid input.Please select from the options provided");
+                scanner.next();
+                continue;
+            }
             int choice=scanner.nextInt();
             if(choice==7){
                 System.out.println("Enter the number:");
@@ -106,14 +109,25 @@ public class Assessment1_SteveMuturi {
             } else if (choice==8) {
                 System.out.println("Thank you for using simple calculator");
                 System.out.println("Exiting the system.");
-                return;
-            }else if(choice>8) {
+                break;
+               // return;
+            }else if(choice>8 || choice<=0) {
                 System.out.println("Invalid choice.Please select from the menu below.");
                 continue;
             }else {
                     System.out.println("Enter the first number:");
+                    if(!scanner.hasNextDouble()){
+                        System.out.println("Invalid input.Please enter a number");
+                        scanner.next();
+                        continue;
+                    }
                     a= scanner.nextDouble();
                     System.out.println("Enter the second number:");
+                    if(!scanner.hasNextDouble()){
+                        System.out.println("Invalid input.Please enter a number");
+                        scanner.next();
+                        continue;
+                    }
                     b= scanner.nextDouble();
                 }
             if((b==0) && (choice==4 || choice==5)){
@@ -138,11 +152,9 @@ public class Assessment1_SteveMuturi {
             else {
                 System.out.println("Thank you for using simple calculator");
                 System.out.println("Exiting the system.");
-                running=false;
-                scanner.close();
+                return;
             }
         }while (running);
-        scanner.close();
     }
 
     private static void calculatorMenu(){
@@ -157,5 +169,13 @@ public class Assessment1_SteveMuturi {
         System.out.println("8.Exit");
     }
 
+    //Test cases I did on the simple calculator
+//    Normal operations with positive numbers
+//    Operations with negative numbers
+//    Decimal number calculations
+//    Division by zero handling
+//    Invalid menu choices
+//    Invalid number input
+//    Exit functionality
 
 }
