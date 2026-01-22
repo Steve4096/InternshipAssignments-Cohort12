@@ -4,33 +4,38 @@ import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner scanner=new Scanner(System.in);
-        boolean running=true;
-        while (running){
-            printMenu();
-            System.out.println("Select a project to run");
-            if(!scanner.hasNextInt()){
-                System.out.println("Invalid input. Please select from the menu below");
-                scanner.next();
-                continue;
-            }
-            int x= scanner.nextInt();
-             switch (x){
-                 case 1 -> Assessment1_SteveMuturi.variableOperations();
-                 case 2 -> Assessment1_SteveMuturi.gradeCalculator();
-                 case 3 -> Assessment1_SteveMuturi.numberSequence();
-                 case 4 -> Assessment1_SteveMuturi.inputValidation();
-                 case 5 -> Assessment1_SteveMuturi.rightAngledTrianglePatternPrinting();
-                 case 6 -> Assessment1_SteveMuturi.calculator();
-                 case 7 ->{
-                     System.out.println("Exiting");
-                     running=false;
-                 }
-                 default -> System.out.println("Invalid choice.Please select one from the menu above");
-             }
-            System.out.println();
-        }
-        scanner.close();
+        int[] grades={12,34,45,65,45,56};
+        String[] fruits={"apples","oranges","lemons","watermelons"};
+        Methods.convertToUppercase(fruits);
+        //Methods.manageStudentGrades(grades);
+        //Methods.manageStudentGradesUsingForEachLoop(grades);
+//        Scanner scanner=new Scanner(System.in);
+//        boolean running=true;
+//        while (running){
+//            printMenu();
+//            System.out.println("Select a project to run");
+//            if(!scanner.hasNextInt()){
+//                System.out.println("Invalid input. Please select from the menu below");
+//                scanner.next();
+//                continue;
+//            }
+//            int x= scanner.nextInt();
+//             switch (x){
+//                 case 1 -> Assessment1_SteveMuturi.variableOperations();
+//                 case 2 -> Assessment1_SteveMuturi.gradeCalculator();
+//                 case 3 -> Assessment1_SteveMuturi.numberSequence();
+//                 case 4 -> Assessment1_SteveMuturi.inputValidation();
+//                 case 5 -> Assessment1_SteveMuturi.rightAngledTrianglePatternPrinting();
+//                 case 6 -> Assessment1_SteveMuturi.calculator();
+//                 case 7 ->{
+//                     System.out.println("Exiting");
+//                     running=false;
+//                 }
+//                 default -> System.out.println("Invalid choice.Please select one from the menu above");
+//             }
+//            System.out.println();
+//        }
+//        scanner.close();
     }
 
     private static void printMenu(){
