@@ -1,4 +1,4 @@
-package org.example.Assesments;
+package org.example.assignments.assessment1_SteveMuturi;
 
 import java.util.Scanner;
 

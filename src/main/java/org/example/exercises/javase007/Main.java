@@ -1,4 +1,4 @@
-package org.example.javaSE007;
+package org.example.exercises.javase007;
 
 public class Main {
     public static void main(String[] args) {
