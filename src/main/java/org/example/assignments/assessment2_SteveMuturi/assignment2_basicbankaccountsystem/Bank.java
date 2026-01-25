@@ -20,7 +20,6 @@ public class Bank {
 
     public void createSavingsAccount(String accountHolder,double balance,double interestRate){
         String accountNumber=generateAccountNumbers();
-       // BankAccount newBankAccount=new BankAccount(accountNumber,accountHolder,balance);
         SavingsAccount newSavingsAccount=new SavingsAccount(accountNumber,accountHolder,balance,interestRate);
         bankAccounts.add(newSavingsAccount);
         System.out.println("Account created. Account number is: "+accountNumber);

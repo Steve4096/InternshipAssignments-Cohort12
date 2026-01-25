@@ -34,7 +34,6 @@ public class BankAccount {
     }
 
     public void setBalance(double balance) {
-        //if(balance<0)throw new RuntimeException("Balance can't be negative.");
         this.balance = balance;
     }
 

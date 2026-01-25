@@ -8,17 +8,6 @@ public class CheckingAccount extends BankAccount{
         this.overdraftLimit=overdraftLimit;
     }
 
-//    @Override
-//    public void withdraw(double amount) {
-//        double maximumAmountWithdrawable=super.getBalance()+overdrafLimit;
-//        if((super.getBalance()-amount)>maximumAmountWithdrawable) throw new InsufficientFundsException("You have exceeded your withdrawal limit/amount.");
-//        else {
-//            double balance=getBalance()-amount;
-//            setBalance(balance);
-//        }
-//    }
-
-
     @Override
     public void withdraw(double amount) {
         if(amount<=0)throw new InvalidAmountException("Invalid amount.");

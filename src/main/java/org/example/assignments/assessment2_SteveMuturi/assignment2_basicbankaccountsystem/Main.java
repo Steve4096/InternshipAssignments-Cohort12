@@ -41,7 +41,6 @@ public class Main {
                         System.out.println("Error:"+e.getMessage());
                         scanner.nextLine();
                     }
-                    //bank.createSavingsAccount();
                 }
                 case 2 ->{
                     try {
@@ -145,4 +144,12 @@ public class Main {
         System.out.println("7.Display All Accounts");
         System.out.println("8.Exit");
     }
+
+    //Test cases
+    /*1.Account creation
+    2.Deposit operations
+    3.Withdrawal operations
+    4.Polymorphic behaviour
+    5.
+     */
 }
