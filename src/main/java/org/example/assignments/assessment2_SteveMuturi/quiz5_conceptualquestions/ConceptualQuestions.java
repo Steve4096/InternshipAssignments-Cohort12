@@ -58,5 +58,5 @@ public class ConceptualQuestions {
     }*/
 
     //Question 5
-
+    //It ensures controlled access through the use of getters and setters.
 }

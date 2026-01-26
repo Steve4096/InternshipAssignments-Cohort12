@@ -3,16 +3,19 @@ package org.example.assignments.assessment2_SteveMuturi.quiz1_book;
 public class Book {
     private String title;
     private String author;
-    private String isbn;
+    private final String isbn;
     private double price;
     private boolean isAvailable;
 
-    public Book(String title,String author,String isbn,double price,boolean isAvailable){
+    public Book(String title,String author,String isbn,double price){
         setTitle(title);
         setAuthor(author);
-        setIsbn(isbn);
+        if(isbn==null || !isbn.matches("\\d{13}")){
+            throw new IllegalArgumentException("ISBN should be exactly 13 characters.");
+        }
+        this.isbn=isbn;
         setPrice(price);
-        setIsAvailable(isAvailable);
+        this.isAvailable=true;
     }
 
     public String getTitle(){return title;}
@@ -28,41 +31,44 @@ public class Book {
     }
 
     public void setTitle(String title){
-        if(title!=null){
-            setTitle(title);
+        if(title==null || title.isEmpty()){
+            System.out.println("Title can't be null or empty");
+            return;
         }
+        this.title=title;
     }
 
     public void setAuthor(String author){
-        if(author!=null){
-            //setAuthor(author);
-            this.author=author;
+        if(author==null || author.isEmpty()){
+            System.out.println("Author field can't be empty");
+            return;
         }
-    }
-
-    public void setIsbn(String isbn) {
-        if(isbn.length()>13 || isbn.length()<13){
-            System.out.println("ISBN should exactly be 13 digits");
-        }
-        this.isbn = isbn;
+        this.author=author;
     }
 
     public void setPrice(double price){
         if(price<0){
             System.out.println("Price can't be 0.");
+            return;
         }
-        setPrice(price);
+        this.price=price;
     }
 
-    public void setIsAvailable(boolean available) {
-        isAvailable = available;
+    public void borrowBook(){
+        if (!isAvailable()){
+            System.out.println("Book is already borrowed.");
+            return;
+        }
+        isAvailable=false;
     }
 
-    public void borrowBook(String title){
-
+    public void returnBook(){
+        if(isAvailable){
+            System.out.println("Book is currently not borrowed.");
+            return;
+        }
+        isAvailable=true;
     }
-
-    public void returnBook(){}
 
     @Override
     public String toString() {
