@@ -26,7 +26,7 @@ public abstract class Product {
 
     public abstract String getProductType();
 
-    public void reduceStock(int quantity){
+    public void purchase(int quantity) throws OutOfStockException{
         if (quantity>stock){
             throw new OutOfStockException("The quantity is greater than the available stock");
         }
@@ -41,5 +41,6 @@ public abstract class Product {
         System.out.println("Product ID: "+productId);
         System.out.println("Product name: "+name);
         System.out.println("Price: "+price);
+        System.out.println("Tax: "+applyTax());
     }
 }

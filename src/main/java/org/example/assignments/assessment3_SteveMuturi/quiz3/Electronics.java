@@ -26,4 +26,12 @@ public class Electronics extends Product  {
     public String getProductType() {
         return "Electronic";
     }
+
+    @Override
+    public void displayProductInfo() {
+        super.displayProductInfo();
+        System.out.println("Product type: "+getProductType());
+        System.out.println("Discount: "+calculateDiscount());
+        System.out.println("Price after discount: "+(price-calculateDiscount()+applyTax()));
+    }
 }

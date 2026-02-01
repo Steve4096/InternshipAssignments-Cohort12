@@ -26,4 +26,12 @@ public class Books extends Product {
     public String getProductType() {
         return "Book";
     }
+
+    @Override
+    public void displayProductInfo() {
+        super.displayProductInfo();
+        System.out.println("Product type: "+getProductType());
+        System.out.println("Discount: "+calculateDiscount());
+        System.out.println("Price after discount: "+(price-calculateDiscount()+applyTax()));
+    }
 }
