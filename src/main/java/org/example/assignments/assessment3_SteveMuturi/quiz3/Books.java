@@ -5,8 +5,8 @@ public class Books extends Product {
     private String isbn;
     private String publisher;
 
-    public Books(String productId,String name,double price,String author,String isbn,String publisher){
-        super(productId, name, price);
+    public Books(String productId,String name,double price,int stock,String author,String isbn,String publisher){
+        super(productId, name, price,stock);
         setIsbn(isbn);
     }
 
