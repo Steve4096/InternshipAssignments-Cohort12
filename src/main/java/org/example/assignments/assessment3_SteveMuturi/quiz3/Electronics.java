@@ -1,4 +1,29 @@
 package org.example.assignments.assessment3_SteveMuturi.quiz3;
 
-public class Electronics {
+public class Electronics extends Product  {
+    private int warrantyPeriod;
+    private double powerConsumption;
+
+    public Electronics(String productId,String name,double price,int warrantyPeriod,double powerConsumption){
+        super(productId, name, price);
+        this.warrantyPeriod=warrantyPeriod;
+        setPowerConsumption(powerConsumption);
+    }
+
+    public void setPowerConsumption(double powerConsumption) {
+        if(powerConsumption<0){
+            throw new InvalidFormatException("Power consumed can't be less than 0");
+        }
+        this.powerConsumption=powerConsumption;
+    }
+
+    @Override
+    public double calculateDiscount() {
+        return 0.1*price;
+    }
+
+    @Override
+    public String getProductType() {
+        return "Electronic";
+    }
 }

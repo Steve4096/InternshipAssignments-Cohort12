@@ -1,8 +1,29 @@
 package org.example.assignments.assessment3_SteveMuturi.quiz3;
 
-import org.example.assignments.assessment3_SteveMuturi.quiz1.Book;
-import org.example.assignments.assessment3_SteveMuturi.quiz1.Library;
+public class Books extends Product {
+    private String author;
+    private String isbn;
+    private String publisher;
 
-public class Books {
+    public Books(String productId,String name,double price,String author,String isbn,String publisher){
+        super(productId, name, price);
+        setIsbn(isbn);
+    }
 
+    public void setIsbn(String isbn) {
+        if(isbn==null || isbn.isEmpty() || !isbn.matches("\\d+")){
+            throw new InvalidFormatException("ISBN should be in numbers and not blank");
+        }
+        this.isbn = isbn;
+    }
+
+    @Override
+    public double calculateDiscount() {
+        return 0.2*price;
+    }
+
+    @Override
+    public String getProductType() {
+        return "Book";
+    }
 }
