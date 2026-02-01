@@ -5,7 +5,9 @@ public class Main {
         try {
             Product clothing=new Clothing("CL001","Boxer",2000,200,"Medium","Cotton","Black");
             clothing.displayProductInfo();
-            clothing.purchase(2000);
+            clothing.purchase(100);
+            Product electronic=new Electronics("EL001","Lenovo laptop",50_000,200,24,50);
+            electronic.displayProductInfo();
         }catch (InvalidFormatException | OutOfStockException exception){
             System.out.println("Error, "+exception.getMessage());
         }
