@@ -9,7 +9,7 @@ public class Main {
 //        Methods.convertToUppercase(fruits);
 //        //Methods.manageStudentGrades(grades);
 //        //Methods.manageStudentGradesUsingForEachLoop(grades);
-//
+        Calculator.dailySavings();
     }
 
 
