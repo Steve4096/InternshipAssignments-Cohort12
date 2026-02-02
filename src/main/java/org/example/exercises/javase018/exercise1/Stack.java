@@ -7,18 +7,27 @@ public class Stack <Datatype>{
     private List<Datatype> contents=new ArrayList<>();
 
     public void push(Datatype content){
-        contents.add(0,content);
+        contents.add(content);
     }
 
-    public void pop(){
-        contents.getLast();
+    public void pushMultipleElements(Datatype...content){
+        for (Datatype item:content){
+            contents.add(item);
+        }
+    }
+
+    public Datatype pop(){
+        if(contents.isEmpty()){
+            return null;
+        }
+        return contents.remove(contents.size()-1);
     }
 
     public Datatype peek(){
-        return contents.get(0);
+        return contents.get(contents.size()-1);
     }
 
     public List<Datatype> returnAllElements(){
-        return contents;
+        return List.copyOf(contents);
     }
 }

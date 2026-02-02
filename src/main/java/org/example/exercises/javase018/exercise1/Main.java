@@ -1,5 +1,6 @@
 package org.example.exercises.javase018.exercise1;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 
 public class Main {
@@ -22,6 +23,12 @@ public class Main {
         System.out.println("Removed element: "+integerQueue.dequeue());
         System.out.println("After dequeueing");
         System.out.println(integerQueue.getContents());
-
+        System.out.println("STACK");
+        Stack<String> stringStack=new Stack<>();
+        stringStack.pushMultipleElements("Steve","Abednego","Tamiron","Gideon");
+        System.out.println(stringStack.returnAllElements());
+        System.out.println("First element: "+stringStack.peek());
+        System.out.println("After popping");
+        System.out.println(stringStack.pop());
     }
 }
