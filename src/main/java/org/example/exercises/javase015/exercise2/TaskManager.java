@@ -1,28 +1,28 @@
 package org.example.exercises.javase015.exercise2;
 
-import java.util.Iterator;
+//Add sorting based on priority
+
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Queue;
 
 public class TaskManager {
-    LinkedList<Task> tasksList =new LinkedList<>();
+    List<Task> tasksList =new LinkedList<>();
 
     public void addTask(Task task){
-        tasksList.addFirst(task);
+        tasksList.addLast(task);
     }
 
     public void addTasks(Task...tasks){
         tasksList.addAll(List.of(tasks));
     }
 
-    public Task getNextTaskFromList(){
+    public Task peekNextTask(){
         return tasksList.isEmpty()? null:tasksList.getFirst();
     }
 
-    public Task getNextTaskFromQueue(){
-        return tasksList.peek();
-    }
+//    public Task pollNextTask(){
+//        return tasksList.poll();
+//    }
 
     public void completeTaskInList(String id){
         for (Task task:tasksList){
