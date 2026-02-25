@@ -1,4 +1,4 @@
-package org.example;
+package org.example.exercises.javase001;
 
 public class PersonalIntroduction {
 

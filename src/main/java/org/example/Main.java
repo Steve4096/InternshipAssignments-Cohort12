@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Scanner;
+import org.example.exercises.javase001.PersonalIntroduction;
 
 public class Main {
     public static void main(String[] args) {
@@ -9,7 +9,8 @@ public class Main {
 //        Methods.convertToUppercase(fruits);
 //        //Methods.manageStudentGrades(grades);
 //        //Methods.manageStudentGradesUsingForEachLoop(grades);
-        Calculator.dailySavings();
+        //Calculator.dailySavings();
+        PersonalIntroduction.introduceMe();
     }
 
 
