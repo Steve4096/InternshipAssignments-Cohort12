@@ -3,18 +3,36 @@ package org.example;
 import java.util.Scanner;
 
 public class Calculator {
-    public static void mathematicalOperations(){
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Enter a number a:");
-        int a=scanner.nextInt();
-        System.out.println("Enter a number b:");
-        int b= scanner.nextInt();
-        System.out.println("Sum is: "+(a+b));
-        System.out.println("Difference is: "+(a-b));
-        System.out.println("Product is: "+(a*b));
-        System.out.println("Division:"+(a/b));
-        System.out.println("Remainder is:"+a%b);
-        scanner.close();
+
+    private Calculator(){
+        //Prevents instantiation
+    }
+    public static int add(int a,int b){
+        return a+b;
+    }
+
+    public static int subtract(int a, int b) {
+        return a - b;
+    }
+
+    public static int multiply(int a, int b) {
+        return a * b;
+    }
+
+    public static int divide(int a, int b) {
+        if (b == 0) {
+            throw new IllegalArgumentException("Cannot divide by zero");
+        }
+        return a / b;
+    }
+
+    public static int remainder(int a, int b) {
+        return a % b;
+    }
+
+    public static double calculateBMI(double mass, double heightCm) {
+        double heightMeters = heightCm / 100.0;
+        return mass / (heightMeters * heightMeters);
     }
 
     public static void studentInformation(){

@@ -1,0 +1,4 @@
+Hello all
+This is a file that I created when I was learning about java operations.
+Java is fun and I love it.
+I dont understnd why people say that Java is difficult
