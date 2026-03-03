@@ -1,0 +1,44 @@
+stages:
+  - build
+  - test
+  - package
+  - artifact
+
+# Build Stage
+build:
+  stage: build
+  script:
+    - echo "Building project..."
+    - mvn clean compile
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+
+# Test Stage
+test:
+  stage: test
+  script:
+    - echo "Running tests..."
+    - mvn test
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+
+# Package Stage
+package:
+  stage: package
+  script:
+    - echo "Packaging project..."
+    - mvn package
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+
+# Artifact Stage
+artifact:
+  stage: artifact
+  script:
+    - echo "Saving artifacts..."
+  artifacts:
+    paths:
+      - target/*.jar
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
