@@ -38,4 +38,15 @@ public class CalculatorTest {
             Calculator.divide(10, 0);
         });
     }
+
+    @Test
+    void testCalculateBMI() {
+        double mass = 70.0;      // kg
+        double heightCm = 175.0; // cm
+
+        double result = Calculator.calculateBMI(mass, heightCm);
+
+        // Expected BMI = 70 / (1.75 * 1.75) = 22.86 approx
+        assertEquals(22.86, result, 0.01);
+    }
 }
