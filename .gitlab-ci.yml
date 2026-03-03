@@ -1,42 +1,41 @@
-image: maven:3.9.2-openjdk-17
+image: maven:3.8.7-openjdk-21
+
+variables:
+  MAVEN_OPTS: "-Dmaven.repo.local=.m2/repository"
 
 stages:
   - build
   - test
   - package
-  - artifact
 
-# Build Stage
-build:
+cache:
+  paths:
+    - .m2/repository
+
+build_job:
   stage: build
   script:
-    - mvn clean compile
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "main"'
+    - mvn compile
+  only:
+    - main
+    - develop
 
-# Test Stage
-test:
+test_job:
   stage: test
   script:
     - mvn test
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "main"'
+  only:
+    - main
+    - develop
 
-# Package Stage
-package:
+package_job:
   stage: package
   script:
     - mvn package
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "main"'
-
-# Artifact Stage
-artifact:
-  stage: artifact
-  script:
-    - echo "Saving artifacts..."
   artifacts:
     paths:
       - target/*.jar
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "develop" || $CI_COMMIT_BRANCH == "main"'
+    expire_in: 1 week
+  only:
+    - main
+    - develop
