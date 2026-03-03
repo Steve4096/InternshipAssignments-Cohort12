@@ -1,5 +1,4 @@
-# Use Java 21 via Eclipse Temurin
-image: eclipse-temurin:21-jdk
+image: maven:3.9.2-eclipse-temurin-21
 
 stages:
   - build
@@ -7,34 +6,34 @@ stages:
   - package
   - artifact
 
-# 1️⃣ Build Stage
+# Build Stage
 build:
   stage: build
   script:
     - echo "Building project..."
     - mvn clean compile
   rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'   # run on pushes to develop
+    - if: '$CI_COMMIT_BRANCH == "develop"'
 
-# 2️⃣ Test Stage
+# Test Stage
 test:
   stage: test
   script:
     - echo "Running tests..."
     - mvn test
   rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'   # run on pushes to develop
+    - if: '$CI_COMMIT_BRANCH == "develop"'
 
-# 3️⃣ Package Stage
+# Package Stage
 package:
   stage: package
   script:
     - echo "Packaging project..."
     - mvn package
   rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'   # run on pushes to develop
+    - if: '$CI_COMMIT_BRANCH == "develop"'
 
-# 4️⃣ Artifact Stage
+# Artifact Stage
 artifact:
   stage: artifact
   script:
@@ -44,5 +43,5 @@ artifact:
       - target/*.jar
     expire_in: 1 week
   rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'   # store artifacts on develop pushes
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'  # store artifact on main merges
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
