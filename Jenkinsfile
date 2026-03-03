@@ -8,7 +8,7 @@ pipeline {
     environment {
         BUILD_DIR = "built"
         REPO_URL = "https://github.com/Steve4096/InternshipAssignments-Cohort12.git"
-        BRANCH = "main"
+        BRANCH = "master"
     }
 
     stages {
