@@ -1,4 +1,5 @@
-image: maven:3.9.2-jdk-21  # valid Docker Hub image
+# Use Eclipse Temurin 21 (Java 21) Docker image
+image: eclipse-temurin:21-jdk
 
 stages:
   - build
@@ -6,6 +7,13 @@ stages:
   - package
   - artifact
 
+before_script:
+  # Install Maven
+  - apt-get update -qq
+  - apt-get install -y maven
+  - mvn -version
+
+# 1️⃣ Build Stage
 build:
   stage: build
   script:
@@ -14,6 +22,7 @@ build:
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
 
+# 2️⃣ Test Stage
 test:
   stage: test
   script:
@@ -22,6 +31,7 @@ test:
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
 
+# 3️⃣ Package Stage
 package:
   stage: package
   script:
@@ -30,6 +40,7 @@ package:
   rules:
     - if: '$CI_COMMIT_BRANCH == "develop"'
 
+# 4️⃣ Artifact Stage
 artifact:
   stage: artifact
   script:
@@ -39,5 +50,6 @@ artifact:
       - target/*.jar
     expire_in: 1 week
   rules:
-    - if: '$CI_COMMIT_BRANCH == "develop"'
+    # Run this stage on merge requests targeting main OR on main pushes
     - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
