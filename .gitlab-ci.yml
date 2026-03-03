@@ -51,5 +51,5 @@ artifact:
     expire_in: 1 week
   rules:
     # Run this stage on merge requests targeting main OR on main pushes
-    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "develop"'
-    - if: '$CI_COMMIT_BRANCH == "develop"'
+    - if: '$CI_MERGE_REQUEST_TARGET_BRANCH_NAME == "main"'
+    - if: '$CI_COMMIT_BRANCH == "main"'
