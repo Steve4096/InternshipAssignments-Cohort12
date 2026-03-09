@@ -33,20 +33,18 @@ pipeline {
         stage('Prepare Artifact') {
             steps {
                 sh '''
-                mkdir -p ${BUILD_DIR}
-                cp target/*.jar ${BUILD_DIR}/app.jar
+                    mkdir -p ${BUILD_DIR}
+                    cp target/*.jar ${BUILD_DIR}/app.jar
                 '''
             }
         }
 
         stage('Build Docker Image') {
             steps {
-                sh '''
-                echo "Building Docker image ${IMAGE_NAME}:${VERSION}"
-                docker build -t ${IMAGE_NAME}:${VERSION} .
-                docker tag ${IMAGE_NAME}:${VERSION} ${IMAGE_NAME}:latest
-                docker images
-                '''
+                script {
+                    docker.build("${IMAGE_NAME}:${VERSION}", ".")
+                    docker.tag("${IMAGE_NAME}:${VERSION}", "${IMAGE_NAME}:latest")
+                }
             }
         }
 
@@ -57,18 +55,12 @@ pipeline {
                         usernameVariable: 'DOCKER_USER',
                         passwordVariable: 'DOCKER_PASS'
                 )]) {
-                    sh '''
-                    echo "Logging into Docker Hub as $DOCKER_USER"
-                    echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-
-                    echo "Pushing Docker image ${IMAGE_NAME}:${VERSION}"
-                    docker push ${IMAGE_NAME}:${VERSION}
-
-                    echo "Pushing Docker image ${IMAGE_NAME}:latest"
-                    docker push ${IMAGE_NAME}:latest
-
-                    docker logout
-                    '''
+                    script {
+                        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                            docker.image("${IMAGE_NAME}:${VERSION}").push()
+                            docker.image("${IMAGE_NAME}:latest").push()
+                        }
+                    }
                 }
             }
         }
@@ -76,7 +68,7 @@ pipeline {
 
     post {
         success {
-            echo "Docker image pushed successfully!"
+            echo "Docker image built and pushed successfully!"
         }
         failure {
             echo "Build or Docker push failed!"
