@@ -6,12 +6,11 @@ pipeline {
     }
 
     environment {
-        BUILD_DIR = "built"
-        REPO_URL = "https://github.com/Steve4096/InternshipAssignments-Cohort12.git"
-        BRANCH = "main"
-
-        IMAGE_NAME = "steve4096/internship_assignments"
-        VERSION = "${BUILD_NUMBER}"
+        BUILD_DIR   = "built"
+        REPO_URL    = "https://github.com/Steve4096/InternshipAssignments-Cohort12.git"
+        BRANCH      = "main"
+        IMAGE_NAME  = "steve4096/internship_assignments"
+        VERSION     = "${BUILD_NUMBER}"
     }
 
     stages {
@@ -19,7 +18,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 git branch: "${BRANCH}",
-                        credentialsId: 'jenkins-github-creds',
+                        credentialsId: 'jenkins-github-creds', // make sure this exists
                         url: "${REPO_URL}"
             }
         }
@@ -43,23 +42,22 @@ pipeline {
             steps {
                 script {
                     docker.build("${IMAGE_NAME}:${VERSION}", ".")
-                    docker.tag("${IMAGE_NAME}:${VERSION}", "${IMAGE_NAME}:latest")
                 }
             }
         }
 
         stage('Push to Docker Hub') {
             steps {
-                withCredentials([usernamePassword(
-                        credentialsId: 'dockerhub-creds',
-                        usernameVariable: 'DOCKER_USER',
-                        passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    script {
-                        docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
-                            docker.image("${IMAGE_NAME}:${VERSION}").push()
-                            docker.image("${IMAGE_NAME}:latest").push()
-                        }
+                script {
+                    docker.withRegistry('https://index.docker.io/v1/', 'dockerhub-creds') {
+                        // Push versioned tag
+                        docker.image("${IMAGE_NAME}:${VERSION}").push()
+
+                        // Re-tag as latest using shell (docker.tag() is sandbox-blocked)
+                        sh "docker tag ${IMAGE_NAME}:${VERSION} ${IMAGE_NAME}:latest"
+
+                        // Push latest tag
+                        docker.image("${IMAGE_NAME}:latest").push()
                     }
                 }
             }
