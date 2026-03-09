@@ -45,11 +45,12 @@ pipeline {
                 echo "Building Docker image ${IMAGE_NAME}:${VERSION}"
                 docker build -t ${IMAGE_NAME}:${VERSION} .
                 docker tag ${IMAGE_NAME}:${VERSION} ${IMAGE_NAME}:latest
+                docker images
                 '''
             }
         }
 
-        stage('Push to DockerHub') {
+        stage('Push to Docker Hub') {
             steps {
                 withCredentials([usernamePassword(
                         credentialsId: 'dockerhub-creds',
@@ -57,9 +58,15 @@ pipeline {
                         passwordVariable: 'DOCKER_PASS'
                 )]) {
                     sh '''
+                    echo "Logging into Docker Hub as $DOCKER_USER"
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+
+                    echo "Pushing Docker image ${IMAGE_NAME}:${VERSION}"
                     docker push ${IMAGE_NAME}:${VERSION}
+
+                    echo "Pushing Docker image ${IMAGE_NAME}:latest"
                     docker push ${IMAGE_NAME}:latest
+
                     docker logout
                     '''
                 }
@@ -69,10 +76,10 @@ pipeline {
 
     post {
         success {
-            echo "Docker image pushed successfully"
+            echo "Docker image pushed successfully!"
         }
         failure {
-            echo "Build failed"
+            echo "Build or Docker push failed!"
         }
     }
 }
