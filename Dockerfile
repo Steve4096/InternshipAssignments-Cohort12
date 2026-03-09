@@ -1,7 +1,7 @@
 # Use an official OpenJDK runtime as the base image
 FROM openjdk:17-jdk-slim
 
-# Set working directory inside the container
+# Set working directory inside the container created
 WORKDIR /app
 
 # Copy the built jar from the pipeline's built/ folder

@@ -8,9 +8,9 @@ pipeline {
     environment {
         BUILD_DIR = "built"
         REPO_URL = "https://github.com/Steve4096/InternshipAssignments-Cohort12.git"
-        BRANCH = "main"
+        BRANCH = "master"
 
-        IMAGE_NAME = "steve4096/internship-app"
+        IMAGE_NAME = "steve4096/internship_assignments"
         VERSION = "${BUILD_NUMBER}"
     }
 
@@ -60,24 +60,8 @@ pipeline {
                     echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
                     docker push ${IMAGE_NAME}:${VERSION}
                     docker push ${IMAGE_NAME}:latest
+                    docker logout
                     '''
-                }
-            }
-        }
-
-        stage('Push to DockerHub') {
-            steps {
-                withCredentials([usernamePassword(
-                        credentialsId: 'dockerhub-creds',
-                        usernameVariable: 'DOCKER_USER',
-                        passwordVariable: 'DOCKER_PASS'
-                )]) {
-                    sh '''
-            echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-            docker push ${IMAGE_NAME}:${VERSION}
-            docker push ${IMAGE_NAME}:latest
-            docker logout
-            '''
                 }
             }
         }
