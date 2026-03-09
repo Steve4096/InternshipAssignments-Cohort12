@@ -9,7 +9,7 @@ pipeline {
         BUILD_DIR   = "built"
         REPO_URL    = "https://github.com/Steve4096/InternshipAssignments-Cohort12.git"
         BRANCH      = "main"
-        IMAGE_NAME  = "steve4096/internship_assignments"
+        IMAGE_NAME  = "stevemuturi/internship_assignments"
         VERSION     = "${BUILD_NUMBER}"
     }
 
